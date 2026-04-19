@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nutrient — Layout Options</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; color: #1e293b; }
+
+  /* ── Page shell ── */
+  .page { padding: 40px; max-width: 1400px; margin: 0 auto; }
+  h1 { font-size: 28px; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { color: #64748b; font-size: 15px; margin-bottom: 48px; }
+
+  /* ── Option card ── */
+  .option { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 60px; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+  .option-header { padding: 28px 32px 20px; border-bottom: 1px solid #f1f5f9; }
+  .option-badge { display: inline-block; padding: 4px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; }
+  .badge-a { background: #dbeafe; color: #1d4ed8; }
+  .badge-b { background: #fce7f3; color: #be185d; }
+  .badge-c { background: #d1fae5; color: #065f46; }
+  .option-name { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+  .option-desc { color: #64748b; font-size: 14px; max-width: 640px; line-height: 1.6; }
+  .mockup-wrap { padding: 24px 32px 32px; background: #f8fafc; }
+
+  /* ─────────────────────────────────────────────
+     OPTION A — Left sidebar (current style, improved)
+  ───────────────────────────────────────────── */
+  .layout-a { display: flex; height: 480px; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.1); background: #f8fafc; }
+
+  .a-sidebar { width: 220px; background: #fff; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; flex-shrink: 0; }
+  .a-logo { padding: 18px 16px 16px; background: linear-gradient(135deg, #10b981, #0d9488); display: flex; align-items: center; gap: 10px; }
+  .a-logo-icon { width: 36px; height: 36px; background: rgba(255,255,255,.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .a-logo-text { color: #fff; }
+  .a-logo-text p { font-weight: 900; font-size: 14px; }
+  .a-logo-text span { font-size: 10px; opacity: .75; }
+  .a-nav { flex: 1; padding: 12px 8px; }
+  .a-nav-label { font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .1em; padding: 0 8px; margin-bottom: 6px; margin-top: 4px; }
+  .a-nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; margin-bottom: 2px; cursor: pointer; }
+  .a-nav-item.active { background: #10b981; color: #fff; font-weight: 600; }
+  .a-nav-item:not(.active) { color: #64748b; }
+  .a-nav-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.05); font-size: 14px; flex-shrink: 0; }
+  .a-nav-item.active .a-nav-icon { background: rgba(255,255,255,.2); }
+  .a-nav-text { font-size: 13px; }
+  .a-user { padding: 10px 8px; border-top: 1px solid #f1f5f9; display: flex; align-items: center; gap: 8px; }
+  .a-user-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#10b981,#0d9488); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .a-user-info p { font-size: 12px; font-weight: 600; }
+  .a-user-info span { font-size: 10px; color: #94a3b8; }
+
+  .a-content { flex: 1; overflow: hidden; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  .a-hero { background: linear-gradient(135deg,#10b981,#0891b2); border-radius: 14px; padding: 18px 20px; color: #fff; }
+  .a-hero h2 { font-size: 18px; font-weight: 900; }
+  .a-hero p { font-size: 11px; opacity: .8; margin-top: 2px; }
+  .a-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; flex: 1; }
+  .a-score { background: linear-gradient(135deg,#10b981,#059669); color:#fff; border-radius: 14px; padding: 16px; display: flex; flex-direction:column; justify-content:center; align-items:center; }
+  .a-score-num { font-size: 44px; font-weight: 900; line-height:1; }
+  .a-score-label { font-size: 11px; opacity: .8; margin-top: 4px; }
+  .a-right { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .a-card { background: #fff; border-radius: 12px; padding: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.06); }
+  .a-card-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #94a3b8; margin-bottom: 6px; }
+  .a-card-val { font-size: 22px; font-weight: 900; }
+  .a-bar { height: 5px; background: #f1f5f9; border-radius: 99px; margin-top: 8px; overflow: hidden; }
+  .a-bar-fill { height: 100%; border-radius: 99px; }
+  .blue { color:#3b82f6; } .blue-fill { background:#3b82f6; }
+  .amber { color:#f59e0b; } .amber-fill { background:#f59e0b; }
+  .rose { color:#f43f5e; } .rose-fill { background:#f43f5e; }
+  .green { color:#10b981; } .green-fill { background:#10b981; }
+
+  /* ─────────────────────────────────────────────
+     OPTION B — Top navigation bar
+  ───────────────────────────────────────────── */
+  .layout-b { height: 480px; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.1); background: #fff; display: flex; flex-direction: column; }
+
+  .b-topbar { display: flex; align-items: center; padding: 0 24px; height: 60px; background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899); flex-shrink: 0; gap: 0; }
+  .b-logo { display: flex; align-items: center; gap: 8px; color: #fff; margin-right: 32px; }
+  .b-logo-icon { width: 32px; height: 32px; background: rgba(255,255,255,.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .b-logo-name { font-size: 15px; font-weight: 900; }
+  .b-nav { display: flex; gap: 2px; flex: 1; }
+  .b-nav-item { padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.75); cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background .15s; }
+  .b-nav-item.active { background: rgba(255,255,255,.2); color: #fff; }
+  .b-nav-item:not(.active):hover { background: rgba(255,255,255,.1); }
+  .b-nav-icon { font-size: 14px; }
+  .b-user { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .b-user-btn { background: rgba(255,255,255,.2); border: none; padding: 7px 14px; border-radius: 8px; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .b-avatar { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+
+  .b-content { flex: 1; padding: 20px 24px; background: #f8fafc; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; overflow: hidden; }
+  .b-stat { background: #fff; border-radius: 14px; padding: 18px; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+  .b-stat-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #94a3b8; margin-bottom: 8px; }
+  .b-stat-val { font-size: 38px; font-weight: 900; line-height: 1; }
+  .b-stat-sub { font-size: 11px; color: #94a3b8; margin-top: 5px; }
+  .b-stat.accent { background: linear-gradient(135deg,#6366f1,#8b5cf6); color: #fff; }
+  .b-stat.accent .b-stat-label { color: rgba(255,255,255,.7); }
+  .b-stat.accent .b-stat-sub { color: rgba(255,255,255,.65); }
+  .b-wide { grid-column: span 2; background: #fff; border-radius: 14px; padding: 18px; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+  .b-wide-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+  .b-bars { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .b-bar-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .b-bar-label { font-size: 10px; color: #94a3b8; font-weight: 600; }
+  .b-bar-track { height: 8px; background: #f1f5f9; border-radius: 99px; overflow: hidden; }
+  .b-bar-fill { height: 100%; border-radius: 99px; }
+  .b-bar-pct { font-size: 11px; font-weight: 700; }
+  .b-meals { background: #fff; border-radius: 14px; padding: 16px; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+  .b-meal-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid #f1f5f9; }
+  .b-meal-row:last-child { border-bottom: none; }
+  .b-meal-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .b-meal-name { font-size: 12px; font-weight: 600; flex: 1; }
+  .b-meal-kcal { font-size: 11px; color: #94a3b8; }
+
+  /* ─────────────────────────────────────────────
+     OPTION C — Icon-only sidebar + wide content
+  ───────────────────────────────────────────── */
+  .layout-c { display: flex; height: 480px; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.1); background: #0f172a; }
+
+  .c-sidebar { width: 68px; background: #0f172a; border-right: 1px solid rgba(255,255,255,.07); display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding: 16px 0; gap: 6px; }
+  .c-logo-wrap { width: 44px; height: 44px; background: linear-gradient(135deg,#10b981,#0891b2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 10px; flex-shrink: 0; }
+  .c-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; transition: background .15s; color: rgba(255,255,255,.45); }
+  .c-icon.active { background: linear-gradient(135deg,#10b981,#0891b2); color: #fff; box-shadow: 0 4px 12px rgba(16,185,129,.4); }
+  .c-icon:not(.active):hover { background: rgba(255,255,255,.07); }
+  .c-spacer { flex: 1; }
+  .c-user-icon { width: 36px; height: 36px; background: linear-gradient(135deg,#10b981,#0d9488); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; }
+
+  .c-content { flex: 1; background: #f8fafc; overflow: hidden; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .c-header { display: flex; align-items: center; justify-content: space-between; }
+  .c-header h2 { font-size: 20px; font-weight: 900; color: #0f172a; }
+  .c-header-date { font-size: 12px; color: #94a3b8; }
+  .c-log-btn { background: linear-gradient(135deg,#10b981,#0891b2); color:#fff; border:none; padding: 8px 18px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .c-grid { display: grid; grid-template-columns: 240px 1fr; gap: 12px; flex: 1; overflow: hidden; }
+  .c-left { display: flex; flex-direction: column; gap: 10px; }
+  .c-score-card { background: linear-gradient(135deg,#0f172a,#1e293b); color:#fff; border-radius: 14px; padding: 16px; text-align:center; }
+  .c-score-num { font-size: 52px; font-weight: 900; background: linear-gradient(135deg,#10b981,#06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .c-score-label { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 2px; }
+  .c-macros { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .c-macro { border-radius: 12px; padding: 10px 12px; }
+  .c-macro-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; opacity: .75; }
+  .c-macro-val { font-size: 18px; font-weight: 900; margin-top: 2px; }
+  .c-macro-bar { height: 4px; background: rgba(0,0,0,.15); border-radius: 99px; overflow: hidden; margin-top: 6px; }
+  .c-macro-fill { height: 100%; border-radius: 99px; background: rgba(0,0,0,.3); }
+  .c-m-blue { background: #dbeafe; color: #1d4ed8; }
+  .c-m-amber { background: #fef3c7; color: #92400e; }
+  .c-m-rose { background: #ffe4e6; color: #be123c; }
+  .c-m-green { background: #d1fae5; color: #065f46; }
+  .c-right { display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+  .c-nutrients { background: #fff; border-radius: 14px; padding: 14px 16px; box-shadow: 0 1px 8px rgba(0,0,0,.06); flex: 1; overflow: hidden; }
+  .c-nut-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; color: #0f172a; }
+  .c-nut-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .c-nut-row { display: flex; flex-direction: column; gap: 3px; }
+  .c-nut-label { font-size: 11px; font-weight: 600; display: flex; justify-content: space-between; }
+  .c-nut-track { height: 6px; background: #f1f5f9; border-radius: 99px; overflow: hidden; }
+  .c-nut-fill { height: 100%; border-radius: 99px; }
+  .c-meals-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .c-meal-card { background: #fff; border-radius: 12px; padding: 10px; text-align:center; box-shadow: 0 1px 6px rgba(0,0,0,.06); }
+  .c-meal-icon { font-size: 20px; margin-bottom: 4px; }
+  .c-meal-name { font-size: 10px; font-weight: 700; color: #64748b; }
+  .c-meal-kcal { font-size: 13px; font-weight: 800; margin-top: 2px; }
+
+  /* ── Choose button ── */
+  .option-footer { padding: 0 32px 28px; display: flex; align-items: center; gap: 14px; }
+  .choose-btn { padding: 12px 30px; border-radius: 12px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: transform .1s, box-shadow .15s; }
+  .choose-btn:active { transform: scale(.97); }
+  .choose-a { background: linear-gradient(135deg,#10b981,#0891b2); color: #fff; box-shadow: 0 4px 14px rgba(16,185,129,.35); }
+  .choose-b { background: linear-gradient(135deg,#6366f1,#ec4899); color: #fff; box-shadow: 0 4px 14px rgba(99,102,241,.35); }
+  .choose-c { background: linear-gradient(135deg,#0f172a,#1e293b); color: #fff; box-shadow: 0 4px 14px rgba(15,23,42,.4); }
+  .tag { font-size: 12px; color: #64748b; }
+
+  /* ── Top notice ── */
+  .notice { background: linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff; border-radius: 14px; padding: 16px 24px; margin-bottom: 32px; display: flex; align-items: center; gap: 12px; }
+  .notice-icon { font-size: 24px; flex-shrink: 0; }
+  .notice p { font-size: 14px; line-height: 1.5; }
+  .notice strong { font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>🎨 Nutrient — Layout Options</h1>
+  <p class="subtitle">Three distinct layouts for the app. Review each one and pick your favourite — then the code will be updated to match.</p>
+
+  <div class="notice">
+    <span class="notice-icon">💡</span>
+    <p><strong>How to choose:</strong> Scroll through all three options below, then click the "Choose this layout" button on the one you want.</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       OPTION A — Sidebar + gradient cards
+  ══════════════════════════════════════════ -->
+  <div class="option">
+    <div class="option-header">
+      <span class="option-badge badge-a">Option A</span>
+      <div class="option-name">Left Sidebar — Colorful & Bold</div>
+      <div class="option-desc">The current structure refined — a fixed left sidebar with a gradient logo area, and a wide content zone. Each page has a colorful hero banner at the top. Great for navigating quickly between sections.</div>
+    </div>
+    <div class="mockup-wrap">
+      <div class="layout-a">
+        <!-- Sidebar -->
+        <div class="a-sidebar">
+          <div class="a-logo">
+            <div class="a-logo-icon">🥗</div>
+            <div class="a-logo-text"><p>Nutrient</p><span>Nutrition Tracker</span></div>
+          </div>
+          <div class="a-nav">
+            <div class="a-nav-label">Navigation</div>
+            <div class="a-nav-item active"><div class="a-nav-icon">🏠</div><span class="a-nav-text">Dashboard</span></div>
+            <div class="a-nav-item"><div class="a-nav-icon">🔍</div><span class="a-nav-text">Log Food</span></div>
+            <div class="a-nav-item"><div class="a-nav-icon">📊</div><span class="a-nav-text">Nutrients</span></div>
+            <div class="a-nav-item"><div class="a-nav-icon">💊</div><span class="a-nav-text">Supplements</span></div>
+            <div class="a-nav-item"><div class="a-nav-icon">📈</div><span class="a-nav-text">Insights</span></div>
+          </div>
+          <div class="a-user">
+            <div class="a-user-avatar">S</div>
+            <div class="a-user-info"><p>Stelios</p><span>View profile</span></div>
+          </div>
+        </div>
+        <!-- Content -->
+        <div class="a-content">
+          <div class="a-hero">
+            <h2>Good morning, Stelios 👋</h2>
+            <p>Monday, April 19 · Here's your nutrition summary</p>
+          </div>
+          <div class="a-grid">
+            <div class="a-score">
+              <div class="a-score-num">78</div>
+              <div class="a-score-label">/100 · 💪 Good progress!</div>
+            </div>
+            <div class="a-right">
+              <div class="a-card"><div class="a-card-title">Protein</div><div class="a-card-val blue">124g</div><div class="a-bar"><div class="a-bar-fill blue-fill" style="width:72%"></div></div></div>
+              <div class="a-card"><div class="a-card-title">Carbs</div><div class="a-card-val amber">198g</div><div class="a-bar"><div class="a-bar-fill amber-fill" style="width:58%"></div></div></div>
+              <div class="a-card"><div class="a-card-title">Fat</div><div class="a-card-val rose">61g</div><div class="a-bar"><div class="a-bar-fill rose-fill" style="width:84%"></div></div></div>
+              <div class="a-card"><div class="a-card-title">Fiber</div><div class="a-card-val green">18g</div><div class="a-bar"><div class="a-bar-fill green-fill" style="width:60%"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="option-footer">
+      <button class="choose-btn choose-a" onclick="choose('A')">✅ Choose Layout A</button>
+      <span class="tag">Best for: quick sidebar navigation, colorful feel</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       OPTION B — Top navigation bar
+  ══════════════════════════════════════════ -->
+  <div class="option">
+    <div class="option-header">
+      <span class="option-badge badge-b">Option B</span>
+      <div class="option-name">Top Navigation Bar — Wide & Open</div>
+      <div class="option-desc">Navigation moves to a horizontal bar across the top (like a typical website or web app). This gives maximum vertical space to your content and feels very familiar. The full page width is used for data.</div>
+    </div>
+    <div class="mockup-wrap">
+      <div class="layout-b">
+        <!-- Top bar -->
+        <div class="b-topbar">
+          <div class="b-logo">
+            <div class="b-logo-icon">🥗</div>
+            <span class="b-logo-name">Nutrient</span>
+          </div>
+          <div class="b-nav">
+            <div class="b-nav-item active"><span class="b-nav-icon">🏠</span> Dashboard</div>
+            <div class="b-nav-item"><span class="b-nav-icon">🔍</span> Log Food</div>
+            <div class="b-nav-item"><span class="b-nav-icon">📊</span> Nutrients</div>
+            <div class="b-nav-item"><span class="b-nav-icon">💊</span> Supplements</div>
+            <div class="b-nav-item"><span class="b-nav-icon">📈</span> Insights</div>
+          </div>
+          <div class="b-user">
+            <button class="b-user-btn"><div class="b-avatar">S</div> Stelios</button>
+          </div>
+        </div>
+        <!-- Content -->
+        <div class="b-content">
+          <div class="b-stat accent">
+            <div class="b-stat-label">⚡ Score</div>
+            <div class="b-stat-val">78</div>
+            <div class="b-stat-sub">💪 Good progress!</div>
+          </div>
+          <div class="b-wide">
+            <div class="b-wide-title">Today's Macros</div>
+            <div class="b-bars">
+              <div class="b-bar-wrap"><div class="b-bar-label">Protein</div><div class="b-bar-track"><div class="b-bar-fill" style="width:72%;background:#3b82f6"></div></div><div class="b-bar-pct blue">72%</div></div>
+              <div class="b-bar-wrap"><div class="b-bar-label">Carbs</div><div class="b-bar-track"><div class="b-bar-fill" style="width:58%;background:#f59e0b"></div></div><div class="b-bar-pct amber">58%</div></div>
+              <div class="b-bar-wrap"><div class="b-bar-label">Fat</div><div class="b-bar-track"><div class="b-bar-fill" style="width:84%;background:#f43f5e"></div></div><div class="b-bar-pct rose">84%</div></div>
+              <div class="b-bar-wrap"><div class="b-bar-label">Fiber</div><div class="b-bar-track"><div class="b-bar-fill" style="width:60%;background:#10b981"></div></div><div class="b-bar-pct green">60%</div></div>
+            </div>
+          </div>
+          <div class="b-stat">
+            <div class="b-stat-label">🎯 Targets Met</div>
+            <div class="b-stat-val green">9</div>
+            <div class="b-stat-sub">of 14 nutrients</div>
+          </div>
+          <div class="b-meals">
+            <div class="b-wide-title">Today's Meals</div>
+            <div class="b-meal-row"><div class="b-meal-dot" style="background:#f97316"></div><span class="b-meal-name">Breakfast</span><span class="b-meal-kcal">420 kcal</span></div>
+            <div class="b-meal-row"><div class="b-meal-dot" style="background:#22c55e"></div><span class="b-meal-name">Lunch</span><span class="b-meal-kcal">680 kcal</span></div>
+            <div class="b-meal-row"><div class="b-meal-dot" style="background:#3b82f6"></div><span class="b-meal-name">Dinner</span><span class="b-meal-kcal">— not logged</span></div>
+            <div class="b-meal-row"><div class="b-meal-dot" style="background:#a855f7"></div><span class="b-meal-name">Snack</span><span class="b-meal-kcal">— not logged</span></div>
+          </div>
+          <div class="b-stat">
+            <div class="b-stat-label">🔥 Calories</div>
+            <div class="b-stat-val">1100</div>
+            <div class="b-stat-sub">kcal today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="option-footer">
+      <button class="choose-btn choose-b" onclick="choose('B')">✅ Choose Layout B</button>
+      <span class="tag">Best for: maximum content space, web-app feel</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       OPTION C — Dark mode + icon sidebar
+  ══════════════════════════════════════════ -->
+  <div class="option">
+    <div class="option-header">
+      <span class="option-badge badge-c">Option C</span>
+      <div class="option-name">Dark Mode + Compact Icon Sidebar</div>
+      <div class="option-desc">A sleek dark-themed app with a narrow icon-only sidebar. Hover tooltips show the labels. The content area gets maximum space and uses a clean light background for readability. Very modern and professional.</div>
+    </div>
+    <div class="mockup-wrap">
+      <div class="layout-c">
+        <!-- Narrow icon sidebar -->
+        <div class="c-sidebar">
+          <div class="c-logo-wrap">🥗</div>
+          <div class="c-icon active">🏠</div>
+          <div class="c-icon">🔍</div>
+          <div class="c-icon">📊</div>
+          <div class="c-icon">💊</div>
+          <div class="c-icon">📈</div>
+          <div class="c-spacer"></div>
+          <div class="c-user-icon">S</div>
+        </div>
+        <!-- Wide content -->
+        <div class="c-content">
+          <div class="c-header">
+            <div>
+              <h2>Good morning, Stelios 👋</h2>
+              <span class="c-header-date">Monday, April 19</span>
+            </div>
+            <button class="c-log-btn">+ Log Food</button>
+          </div>
+          <div class="c-grid">
+            <div class="c-left">
+              <div class="c-score-card">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.45);margin-bottom:4px">Nutrient Score</div>
+                <div class="c-score-num">78</div>
+                <div class="c-score-label">💪 Good progress, keep going!</div>
+              </div>
+              <div class="c-macros">
+                <div class="c-macro c-m-blue"><div class="c-macro-label">Protein</div><div class="c-macro-val">124g</div><div class="c-macro-bar"><div class="c-macro-fill" style="width:72%"></div></div></div>
+                <div class="c-macro c-m-amber"><div class="c-macro-label">Carbs</div><div class="c-macro-val">198g</div><div class="c-macro-bar"><div class="c-macro-fill" style="width:58%"></div></div></div>
+                <div class="c-macro c-m-rose"><div class="c-macro-label">Fat</div><div class="c-macro-val">61g</div><div class="c-macro-bar"><div class="c-macro-fill" style="width:84%"></div></div></div>
+                <div class="c-macro c-m-green"><div class="c-macro-label">Fiber</div><div class="c-macro-val">18g</div><div class="c-macro-bar"><div class="c-macro-fill" style="width:60%"></div></div></div>
+              </div>
+            </div>
+            <div class="c-right">
+              <div class="c-nutrients">
+                <div class="c-nut-title">Key Nutrients</div>
+                <div class="c-nut-grid">
+                  <div class="c-nut-row"><div class="c-nut-label"><span>Iron</span><span style="color:#f59e0b">52%</span></div><div class="c-nut-track"><div class="c-nut-fill" style="width:52%;background:#f59e0b"></div></div></div>
+                  <div class="c-nut-row"><div class="c-nut-label"><span>Calcium</span><span style="color:#3b82f6">68%</span></div><div class="c-nut-track"><div class="c-nut-fill" style="width:68%;background:#3b82f6"></div></div></div>
+                  <div class="c-nut-row"><div class="c-nut-label"><span>Vitamin C</span><span style="color:#10b981">91%</span></div><div class="c-nut-track"><div class="c-nut-fill" style="width:91%;background:#10b981"></div></div></div>
+                  <div class="c-nut-row"><div class="c-nut-label"><span>Vitamin D</span><span style="color:#f43f5e">34%</span></div><div class="c-nut-track"><div class="c-nut-fill" style="width:34%;background:#f43f5e"></div></div></div>
+                  <div class="c-nut-row"><div class="c-nut-label"><span>Magnesium</span><span style="color:#8b5cf6">75%</span></div><div class="c-nut-track"><div class="c-nut-fill" style="width:75%;background:#8b5cf6"></div></div></div>
+                  <div class="c-nut-row"><div class="c-nut-label"><span>Zinc</span><span style="color:#10b981">88%</span></div><div class="c-nut-track"><div class="c-nut-fill" style="width:88%;background:#10b981"></div></div></div>
+                </div>
+              </div>
+              <div class="c-meals-row">
+                <div class="c-meal-card"><div class="c-meal-icon">☕</div><div class="c-meal-name">BREAKFAST</div><div class="c-meal-kcal" style="color:#f97316">420</div></div>
+                <div class="c-meal-card"><div class="c-meal-icon">🍽️</div><div class="c-meal-name">LUNCH</div><div class="c-meal-kcal" style="color:#22c55e">680</div></div>
+                <div class="c-meal-card" style="opacity:.5"><div class="c-meal-icon">🌙</div><div class="c-meal-name">DINNER</div><div class="c-meal-kcal" style="color:#94a3b8">—</div></div>
+                <div class="c-meal-card" style="opacity:.5"><div class="c-meal-icon">🍪</div><div class="c-meal-name">SNACK</div><div class="c-meal-kcal" style="color:#94a3b8">—</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="option-footer">
+      <button class="choose-btn choose-c" onclick="choose('C')">✅ Choose Layout C</button>
+      <span class="tag">Best for: dark aesthetic, maximum content width, modern feel</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function choose(opt) {
+  const names = { A:'Left Sidebar — Colorful & Bold', B:'Top Navigation Bar — Wide & Open', C:'Dark Mode + Compact Icon Sidebar' };
+  document.body.innerHTML = `
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+      <div style="background:#fff;border-radius:20px;padding:56px;text-align:center;max-width:480px;box-shadow:0 8px 40px rgba(0,0,0,.1);">
+        <div style="font-size:56px;margin-bottom:16px;">✅</div>
+        <h2 style="font-size:24px;font-weight:900;margin-bottom:8px;">Layout ${opt} selected!</h2>
+        <p style="color:#64748b;font-size:15px;line-height:1.6;">"${names[opt]}"<br><br>Close this preview and tell me <strong>"use layout ${opt}"</strong> and the full app will be updated to match.</p>
+      </div>
+    </div>`;
+}
+</script>
+</body>
+</html>
