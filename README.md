@@ -16,7 +16,7 @@
 
 <br/>
 
-![NUTRIENT.IO Dashboard Preview](screenshots/dashboard.png)
+![NUTRIENT.IO Dashboard Preview](Screenshots/dashboard.png)
 
 </div>
 
