@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ActivityLevel } from '@/../../db/schema'
 import { useAuth } from '@/hooks/useAuth'
 import { trpc } from '@/providers/trpc'
 import { Button } from '@/components/ui/button'
@@ -60,7 +61,7 @@ export function OnboardingPage() {
         sex: profile.sex || undefined,
         heightCm: profile.heightCm ? parseFloat(profile.heightCm) : undefined,
         weightKg: profile.weightKg ? parseFloat(profile.weightKg) : undefined,
-        activityLevel: profile.activityLevel as any,
+        activityLevel: profile.activityLevel as ActivityLevel,
         onboarded: true,
       })
     } else {

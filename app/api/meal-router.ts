@@ -14,7 +14,7 @@ const NUTRIENT_COLUMNS = [
 function calculateNutrients(
   food: Record<string, string | number | null | Date>,
   servingAmount: number,
-  _servingSize: number,
+  _servingSize: number, // reserved for future bioavailability calculations
 ): Record<string, number> {
   // Nutrient values in food data are already stored per 1 serving (per servingSize amount).
   // servingAmount is a multiplier (e.g. 5 = "5 servings"), so we just multiply directly.

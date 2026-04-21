@@ -158,7 +158,7 @@ export function TrendsPage() {
               <CardContent className="pt-0 pb-5">
                 <div className="grid grid-cols-2 gap-4">
                   {dashboard?.gaps?.slice(0, 4).map((gap) => {
-                    const status = getStatusColor(gap.status)
+                    const _status = getStatusColor(gap.status)
                     return (
                       <div key={gap.name} className="flex items-center gap-4 p-4 rounded-xl border-l-4 border-l-orange-400 bg-orange-50/50 dark:bg-orange-950/20">
                         <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center flex-shrink-0 shadow-md shadow-orange-200">

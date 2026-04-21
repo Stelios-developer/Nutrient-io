@@ -39,7 +39,7 @@ export const onboardingRouter = createRouter({
       if (data.region !== undefined) patch.region = data.region;
       if (data.onboarded !== undefined) patch.onboarded = data.onboarded;
 
-      usersStore.update(userId, patch as any);
+      usersStore.update(userId, patch as Record<string, unknown>);
       return { success: true };
     }),
 

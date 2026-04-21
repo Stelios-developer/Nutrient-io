@@ -60,7 +60,7 @@ export function NutrientsPage() {
   const { user } = useAuth()
   const userId = user?.id ?? 1
   const [activeTab, setActiveTab] = useState('all')
-  const [selectedNutrient, setSelectedNutrient] = useState<null | any>(null)
+  const [selectedNutrient, setSelectedNutrient] = useState<null | Record<string, unknown>>(null)
 
   const { data: dashboard, isLoading } = trpc.dashboard.daily.useQuery({ userId, date: getToday() })
 
@@ -206,7 +206,7 @@ export function NutrientsPage() {
   )
 }
 
-function NutrientDetailPanel({ nutrient, onClose }: { nutrient: any; onClose: () => void }) {
+function NutrientDetailPanel({ nutrient, onClose }: { nutrient: Record<string, unknown>; onClose: () => void }) {
   const status = getStatusColor(nutrient.status)
   const cfg = CATEGORY_CONFIG[nutrient.category] ?? CATEGORY_CONFIG.other
 
@@ -252,7 +252,7 @@ function NutrientDetailPanel({ nutrient, onClose }: { nutrient: any; onClose: ()
           <div>
             <p className="text-sm font-bold mb-2">Top Food Sources</p>
             <div className="space-y-2">
-              {topFoods.slice(0, 4).map((food: any) => (
+              {topFoods.slice(0, 4).map((food: Record<string, unknown>) => (
                 <div key={food.id} className="flex items-center gap-3 p-3 rounded-lg bg-card border text-sm">
                   <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${cfg.grad} flex items-center justify-center font-bold text-white text-xs flex-shrink-0`}>
                     {Math.round(food.amount)}

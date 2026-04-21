@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ActivityLevel } from '@/../../db/schema'
 import { useAuth } from '@/hooks/useAuth'
 import { trpc } from '@/providers/trpc'
 import { Button } from '@/components/ui/button'
@@ -32,7 +33,7 @@ export function ProfilePage() {
       heightCm: height ? parseFloat(height) : undefined,
       weightKg: weight ? parseFloat(weight) : undefined,
       sex: sex as 'male' | 'female' | undefined,
-      activityLevel: activity as any,
+      activityLevel: activity as ActivityLevel,
     })
   }
 
@@ -94,7 +95,7 @@ export function ProfilePage() {
               </div>
               <div className="space-y-1">
                 <label className="text-xs font-medium text-muted-foreground">Activity Level</label>
-                <Select value={activity} onValueChange={(v: string) => setActivity(v as any)}>
+                <Select value={activity} onValueChange={(v: string) => setActivity(v as ActivityLevel)}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="sedentary">Sedentary</SelectItem>

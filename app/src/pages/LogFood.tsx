@@ -37,7 +37,7 @@ export function LogFoodPage() {
 
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedMeal, setSelectedMeal] = useState<'breakfast' | 'lunch' | 'dinner' | 'snack'>('breakfast')
-  const [selectedFood, setSelectedFood] = useState<null | { id: number; name: string; servingSize: string; servingUnit: string; calories: string; category: string | null; [key: string]: any }>(null)
+  const [selectedFood, setSelectedFood] = useState<null | { id: number; name: string; servingSize: string; servingUnit: string; calories: string; category: string | null; [key: string]: string | number | null }>(null)
   const [servingAmount, setServingAmount] = useState(1)
 
   const { data: searchResults, isLoading: searching } = trpc.food.search.useQuery(
@@ -73,7 +73,7 @@ export function LogFoodPage() {
   const displayFoods = searchQuery.length >= 2 ? searchResults : (recentFoods && recentFoods.length > 0 ? [] : allFoods)
 
   // ── Food detail panel (right side) ──
-  const FoodDetail = () => {
+  const renderFoodDetail = () => {
     if (!selectedFood) return (
       <div className="flex flex-col items-center justify-center h-full text-center p-10 text-muted-foreground">
         <div className="text-6xl mb-5">🍽️</div>
@@ -257,7 +257,7 @@ export function LogFoodPage() {
                       <button
                         key={`recent-${food.foodId}`}
                         disabled={!allFoods}
-                        onClick={() => { if (fullFood) setSelectedFood(fullFood as any) }}
+                        onClick={() => { if (fullFood) setSelectedFood(fullFood as typeof selectedFood) }}
                         className={`w-full flex items-center gap-4 px-5 py-4 hover:bg-accent/50 transition-colors text-left disabled:opacity-50 disabled:cursor-not-allowed border-b border-border/30 last:border-0 ${
                           selectedFood?.id === food.foodId ? 'bg-accent/50' : ''
                         }`}
@@ -294,7 +294,7 @@ export function LogFoodPage() {
                     return (
                       <button
                         key={food.id}
-                        onClick={() => setSelectedFood(food as any)}
+                        onClick={() => setSelectedFood(food as typeof selectedFood)}
                         className={`w-full flex items-center gap-4 px-5 py-4 hover:bg-accent/50 transition-colors text-left border-b border-border/30 last:border-0 ${
                           selectedFood?.id === food.id ? 'bg-accent/50' : ''
                         }`}
@@ -328,7 +328,7 @@ export function LogFoodPage() {
         <div className="col-span-2">
           <Card className="border shadow-sm min-h-[560px]">
             <CardContent className="p-6 h-full">
-              <FoodDetail />
+              {renderFoodDetail()}
             </CardContent>
           </Card>
         </div>

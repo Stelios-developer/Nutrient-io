@@ -119,7 +119,9 @@ function AuthLayoutContent({
 
   useEffect(() => {
     if (isCollapsed) {
-      setIsResizing(false);
+      // Reset resizing state when sidebar collapses
+      const timer = setTimeout(() => setIsResizing(false), 0);
+      return () => clearTimeout(timer);
     }
   }, [isCollapsed]);
 

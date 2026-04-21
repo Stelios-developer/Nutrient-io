@@ -9,7 +9,7 @@ import {
   Dumbbell, Wheat, Droplet, Leaf,
   ChevronRight, Plus, AlertTriangle,
   Coffee, UtensilsCrossed, Moon, Cookie, Pill,
-  Flame, Zap, CalendarDays, TrendingUp,
+  Flame, Zap, CalendarDays,
 } from 'lucide-react'
 
 const MEAL_ICONS: Record<string, React.ReactNode> = {
