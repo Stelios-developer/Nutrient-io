@@ -60,7 +60,12 @@ export function NutrientsPage() {
   const { user } = useAuth()
   const userId = user?.id ?? 1
   const [activeTab, setActiveTab] = useState('all')
-  const [selectedNutrient, setSelectedNutrient] = useState<null | Record<string, unknown>>(null)
+  type NutrientStatus = {
+    id: number; name: string; displayName: string; category: string; unit: string;
+    amount: number; rda: number; ul: number | null; percentage: number;
+    ulPercentage: number | null; status: string; score: number; description: string | null;
+  }
+  const [selectedNutrient, setSelectedNutrient] = useState<null | NutrientStatus>(null)
 
   const { data: dashboard, isLoading } = trpc.dashboard.daily.useQuery({ userId, date: getToday() })
 
@@ -206,7 +211,10 @@ export function NutrientsPage() {
   )
 }
 
-function NutrientDetailPanel({ nutrient, onClose }: { nutrient: Record<string, unknown>; onClose: () => void }) {
+type NutrientStatus = { id: number; name: string; displayName: string; category: string; unit: string; amount: number; rda: number; ul: number | null; percentage: number; ulPercentage: number | null; status: string; score: number; description: string | null }
+type TopFood = { id: number; name: string; category: string | null; amount: number; calories: number; servingUnit: string }
+
+function NutrientDetailPanel({ nutrient, onClose }: { nutrient: NutrientStatus; onClose: () => void }) {
   const status = getStatusColor(nutrient.status)
   const cfg = CATEGORY_CONFIG[nutrient.category] ?? CATEGORY_CONFIG.other
 
@@ -252,7 +260,7 @@ function NutrientDetailPanel({ nutrient, onClose }: { nutrient: Record<string, u
           <div>
             <p className="text-sm font-bold mb-2">Top Food Sources</p>
             <div className="space-y-2">
-              {topFoods.slice(0, 4).map((food: Record<string, unknown>) => (
+              {topFoods.slice(0, 4).map((food: TopFood) => (
                 <div key={food.id} className="flex items-center gap-3 p-3 rounded-lg bg-card border text-sm">
                   <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${cfg.grad} flex items-center justify-center font-bold text-white text-xs flex-shrink-0`}>
                     {Math.round(food.amount)}

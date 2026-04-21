@@ -257,7 +257,7 @@ export function LogFoodPage() {
                       <button
                         key={`recent-${food.foodId}`}
                         disabled={!allFoods}
-                        onClick={() => { if (fullFood) setSelectedFood(fullFood as typeof selectedFood) }}
+                        onClick={() => { if (fullFood) setSelectedFood(fullFood as unknown as typeof selectedFood) }}
                         className={`w-full flex items-center gap-4 px-5 py-4 hover:bg-accent/50 transition-colors text-left disabled:opacity-50 disabled:cursor-not-allowed border-b border-border/30 last:border-0 ${
                           selectedFood?.id === food.foodId ? 'bg-accent/50' : ''
                         }`}
@@ -294,7 +294,7 @@ export function LogFoodPage() {
                     return (
                       <button
                         key={food.id}
-                        onClick={() => setSelectedFood(food as typeof selectedFood)}
+                        onClick={() => setSelectedFood(food as unknown as typeof selectedFood)}
                         className={`w-full flex items-center gap-4 px-5 py-4 hover:bg-accent/50 transition-colors text-left border-b border-border/30 last:border-0 ${
                           selectedFood?.id === food.id ? 'bg-accent/50' : ''
                         }`}

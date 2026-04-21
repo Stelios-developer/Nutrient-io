@@ -71,7 +71,8 @@ export class HttpClient {
     return this.request<T>(url, { ...config, method: "GET", params });
   }
 
-  post<T>(url: string, body?: unknown, config?: RequestConfig) {
-    return this.request<T>(url, { ...config, method: "POST", body });
+  post<T>(url: string, body?: Record<string, unknown> | string | null, config?: RequestConfig) {
+    const serialized = body != null && typeof body === 'object' ? JSON.stringify(body) : (body ?? undefined);
+    return this.request<T>(url, { ...config, method: "POST", body: serialized });
   }
 }
